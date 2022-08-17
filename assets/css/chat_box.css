@@ -1,16 +1,35 @@
 #user-chat-box {
   position: fixed;
-  bottom: 10px;
+  bottom: 45px;
   right: 10px;
   border: 1px dashed grey;
-  height: 250px;
-  width: 250px;
+  max-height: 300px;
+  max-width: 250px;
   background: white;
   padding: 5px;
   box-shadow: 1px 1px 1px 1px lightgrey; }
+  #user-chat-box #chats-header {
+    width: 100%;
+    box-sizing: border-box;
+    color: #f3dddd;
+    background-color: teal;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem; }
+    #user-chat-box #chats-header span {
+      margin-right: 10px; }
+  #user-chat-box #toggle-container {
+    max-height: 250px;
+    max-width: 250px;
+    overflow: scroll; }
+  #user-chat-box #chats-header:hover {
+    background-color: darkcyan;
+    cursor: pointer; }
   #user-chat-box #chat-messages-list {
     list-style: none;
     padding: 10px;
+    overflow-y: scroll;
     height: 70%;
     background-color: white;
     overflow: auto; }
@@ -20,26 +39,35 @@
       #user-chat-box #chat-messages-list .other-message span {
         display: inline-block;
         padding: 15px;
-        background-color: #ffa0a0; }
+        background-color: #ffa0a0;
+        overflow-wrap: break-word; }
     #user-chat-box #chat-messages-list .self-message {
       text-align: right;
       padding: 5px; }
       #user-chat-box #chat-messages-list .self-message span {
         display: inline-block;
         padding: 15px;
-        background-color: #a0dcff; }
+        background-color: #a0dcff;
+        overflow-wrap: break-word; }
   #user-chat-box #chat-message-input-container {
     height: 24%;
     width: 100%;
     display: flex;
     flex-direction: row; }
     #user-chat-box #chat-message-input-container #chat-message-input {
-      height: 50%;
-      width: 70%; }
+      height: 70%;
+      width: 70%;
+      font-size: 1rem; }
     #user-chat-box #chat-message-input-container #send-message {
-      height: 50%;
+      height: 40%;
       width: 30%;
-      font-size: 25px;
+      font-size: 20px;
       color: white;
       border: none;
-      background: #58d258; }
+      background: #58d258;
+      text-align: left; }
+
+.chat-box-hide {
+  height: 0;
+  overflow: hidden;
+  transition: all 1s ease-in-out; }

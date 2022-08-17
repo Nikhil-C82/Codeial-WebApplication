@@ -65,8 +65,13 @@ class ChatEngine{
             }));
 
             newMessage.addClass(messageType);
+            newMessage.attr('id', 'message');
 
             $('#chat-messages-list').append(newMessage);
         })
     }
 }
+
+$('#chats-header').click(function(){
+    $('#toggle-container').toggleClass('chat-box-hide');
+});

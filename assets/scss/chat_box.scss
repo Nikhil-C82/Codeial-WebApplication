@@ -1,18 +1,52 @@
 // CHANGE :: add styling for the chat box
 #user-chat-box{
     position: fixed;
-    bottom: 10px;
+    bottom: 45px;
     right: 10px;
     border: 1px dashed grey;
-    height: 250px;
-	width: 250px;
+    max-height: 300px;
+    max-width: 250px;
+	// overflow-y:scroll;
 	background: white;
 	padding: 5px;
 	box-shadow: 1px 1px 1px 1px lightgrey;
+	// z-index: 20;
+
+	
+
+	#chats-header{
+        width: 100%;
+        box-sizing: border-box;
+        color: rgb(243, 221, 221);
+        background-color: teal;
+        padding: 5px 10px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.4rem;
+
+
+        span{
+            margin-right: 10px;
+        }
+    }
+
+	#toggle-container{
+		max-height: 250px;
+		max-width: 250px;
+		overflow:scroll;
+	}
+
+    #chats-header:hover{
+        background-color: darkcyan;
+        cursor: pointer;
+    }
+
 
     #chat-messages-list{
     	list-style: none;
 	    padding: 10px;
+		//change
+		overflow-y: scroll;
 	    height: 70%;
 	    background-color: white;
 	    overflow: auto;
@@ -20,10 +54,13 @@
 	    .other-message{
 		    text-align: left;
 		    padding: 5px;
+			// overflow-wrap: break-word;
 		    span{
 		    	display: inline-block;
 	    		padding: 15px;
 		    	background-color: #ffa0a0;
+				overflow-wrap:break-word;
+
 		    }
 		    
 	    }
@@ -31,15 +68,17 @@
 	    .self-message{
 		    text-align: right;
 		    padding: 5px;
-		   
+			// overflow-wrap: break-word;
 		    span{
 		    	 
 	    		display: inline-block;
 	    		padding: 15px;
     			background-color: #a0dcff;
+				overflow-wrap: break-word;
 		    }
 		   
 	    }
+
 
     }
     #chat-message-input-container{
@@ -49,17 +88,47 @@
 		    flex-direction: row;
 
 		    #chat-message-input{
-	    	    height: 50%;
+	    	    height: 70%;
     			width: 70%;
+				font-size: 1rem;
 		    }
 
 		    #send-message{
-	    	    height: 50%;
+	    	    height: 40%;
 			    width: 30%;
-			    font-size: 25px;
+			    font-size: 20px;
 			    color: white;
 			    border: none;
 			    background: #58d258;
+				text-align: left;
 		    }
-	    }
+	}	
+
+}
+
+
+// .self-message{
+//     max-width: 70%;
+//     background-color: rgb(86, 218, 218);
+//     padding: 8px 3px;
+//     font-size: 1rem;
+//     float: right;
+//     margin: 3px 5px;
+	
+// }
+
+// .other-message{
+//     max-width: 70%;
+//     background-color: rgb(251, 173, 173);
+//     padding: 8px 3px;
+//     font-size: 1rem;
+//     margin: 3px 5px;
+//     float: left;
+// 	overflow-wrap: break-word;
+// }
+
+.chat-box-hide{
+    height: 0;
+    overflow:hidden;
+    transition: all 1s ease-in-out;
 }
