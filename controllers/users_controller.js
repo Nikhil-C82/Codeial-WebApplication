@@ -1,16 +1,81 @@
 const User = require('../models/user');
 const fs = require('fs');
 const path = require('path');
+const Friendship = require('../models/friendship');
 
 
-module.exports.profile = function(req, res){
-    User.findById(req.params.id, function(err, user){
-        return res.render('user_profile', {
-            title: 'User Profile',
-            profile_user: user
+module.exports.profile = async function(req, res){
+    // User.findById(req.params.id, function(err, user){
+    //     return res.render('user_profile', {
+    //         title: 'User Profile',
+    //         profile_user: user
+    //     });
+    // });
+
+    let userTo = await User.findById(req.params.id);
+    if(userTo){
+        let friendship = await Friendship.findOne({
+            user_from:req.user.id,
+            user_to:userTo
         });
+
+        if(friendship){
+            return res.render('user_profile', {
+                title : 'profile',
+                profile_user: userTo,
+                friend: 'Unfollow'
+            });
+        }else{
+            return res.render('user_profile', {
+                title : 'profile',
+                profile_user: userTo,
+                friend: 'Follow'
+            });
+        }
+    }
+
+    return res.render('user_profile', {
+        title : 'profile',
+        profile_user: userTo,
+        friend: 'Error Fetching User Details'
     });
 
+}
+
+module.exports.addFriend = async function(req, res){
+    try{
+        let friendship = await Friendship.findOne({
+            user_from: req.user.id,
+            user_to: req.params.id
+        });
+        let user = await User.findById(req.user.id);
+        if(friendship){
+            friendship.remove();
+            user.friends.pull(req.params.id);
+            if(req.xhr){
+                return res.status(200).json({
+                    button_text: "Follow",
+                });
+            }
+        }else{
+            await Friendship.create({
+                user_from: req.user.id,
+                user_to: req.params.id
+            });
+            user.friends.push(req.params.id);
+            user.save();
+            if(req.xhr){
+                return res.status(200).json({
+                    button_text: "Unfollow",
+                });
+            }
+        }
+        return res.redirect('back');
+    }catch(err){
+        console.log("error", err);
+        return res.redirect('back');
+    }
+    
 }
 
 

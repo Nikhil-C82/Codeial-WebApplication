@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/css/user_profile.css">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <img src="<%= user.avatar %>" alt="<%= user.name %>" width="100">
 
@@ -17,4 +17,8 @@
     <!-- else show only the profile info -->
     <p><%= profile_user.name %></p>
     <p><%= profile_user.email %></p>
+    <br>
+    <br>
+    <a id="follow" href="/users/addfriend/<%=profile_user._id %>"> <%=friend%> </a>
 <%} %>
+<script src="js/toggle_follow.js"></script>
