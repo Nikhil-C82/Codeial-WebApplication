@@ -1,0 +1,1 @@
+{let o=$("#follow");o.click((function(e){e.preventDefault(),console.log("clicked follow"),$.ajax({type:"get",url:o.prop("href"),success:function(e){o.text(e.button_text)},error:function(o){console.log(o)}})}))}
